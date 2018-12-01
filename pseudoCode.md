@@ -9,8 +9,8 @@ var character = {
     isEnemy: false,
     isDefender: false,
     healthPoints: undefined,
-    attackPower: undefined,
     attackPoint: undefined,
+    attackPower: undefined,
     counterAtackPower: undefined,
     attackCounter: 0,
 }
