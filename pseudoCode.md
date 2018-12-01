@@ -4,7 +4,16 @@
 
 # Obejcts
 
-
+var character = {
+    name: undefined,
+    isEnemy: false,
+    isDefender: false,
+    healthPoints: undefined,
+    attackPower: undefined,
+    attackPoint: undefined,
+    counterAtackPower: undefined,
+    attackCounter: 0,
+}
 
 
 # Arrays
