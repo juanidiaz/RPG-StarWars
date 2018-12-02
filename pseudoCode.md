@@ -9,12 +9,11 @@ var character = {
     isEnemy: false,
     isDefender: false,
     healthPoints: undefined,
-    attackPoint: undefined,
     attackPower: undefined,
     counterAtackPower: undefined,
-    attackCounter: 0,
 }
 
+    attackPoint: undefined,
 
 # Arrays
 

@@ -33,97 +33,98 @@
 
     <div class="gameinfo-header py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <span>Current selected character: <b>Han Solo</b></span>
-            <span>HP: <b>180</b></span>
-            <span>Games won: <b>3</b></span>
-            <span>Games played: <b>10</b></span>
+            <span id="statsName">Current selected character: <b>NONE SELECTED</b></span>
+            <span id="statsHP">HP: <b>--</b></span>
+            <span id="statsWins">Games won: <b>0</b></span>
+            <span id="statsMatches">Games played: <b>0</b></span>
 
         </div>
     </div>
 
     <div class="container">
-        <!-- ******************* -->
-        <div class="row">
+        <!-- ************* CHARACTER LIST ************* -->
+        <div class="row justify-content-between" style="text-align: center;">
+
+            <div class="col-sm-2" id="0" style="display:inline">
+                <img class="rounded-circle" src="./assets/images/solo.png" alt="Character image" width="110" height="110">
+                <h2>Han Solo</h2>
+                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="0" href="#" role="button">Set as Player</a></p>
+            </div>
+
+            <div class="col-sm-2" id="1" style="display:inline">
+                <img class="rounded-circle" src="./assets/images/yoda.png" alt="Character image" width="110" height="110">
+                <h2>Master Yoda</h2>
+                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="1" href="#" role="button">Set as Player</a></p>
+            </div>
+
+            <div class="col-sm-2" id="2" style="display:inline">
+                <img class="rounded-circle" src="./assets/images/BenKenobi.png" alt="Character image" width="110"
+                    height="110">
+                <h2>Ben Kenobi</h2>
+                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="2" href="#" role="button">Set as Player</a></p>
+            </div>
+
+            <div class="col-sm-2" id="3" style="display:inline">
+                <img class="rounded-circle" src="./assets/images/darthmaul.png" alt="Character image" width="110"
+                    height="110">
+                <h2>Darth Maul</h2>
+                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="3" href="#" role="button">Set as Player</a></p>
+            </div>
+
+            <div class="col-sm-2" id="4" style="display:inline">
+                <img class="rounded-circle" src="./assets/images/darthvader.png" alt="Character image" width="110"
+                    height="110">
+                <h2>Darth Vader</h2>
+                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="4" href="#" role="button">Set as Player</a></p>
+            </div>
+
+            <div class="col-sm-2" id="5" style="display:inline">
+                <img class="rounded-circle" src="./assets/images/obiwan.png" alt="Character image" width="110" height="110">
+                <h2>Obi Wan Kenobi</h2>
+                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="5" href="#" role="button">Set as Player</a></p>
+            </div>
+
+        </div>
+
+        <!-- ************* PLAYER & Defender CARDS ************* -->
+
+        <div class="row" style="margin-top: 20px;">
             <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                        alt="Thumbnail [100%x225]" src="./assets/images/solo.png">
+                <div class="card mb-4 shadow-sm" id="cardPLayer" style="visibility:hidden">
+                    <img class="card-img-top" id="imagePlayer" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                        alt="Thumbnail [100%x225]" src="https://placehold.it/225x225">
                     <div class="card-body">
-                        <strong class="d-inline-block mb-2 text-success" id="charName">Han Solo</strong>
+                        <strong class="d-inline-block mb-2 text-success" id="namePlayer">Player character</strong>
                         <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted" id="charHP">HP: 180</small>
+                            <small class="text-muted" id="hpPlayer">HP: ??</small>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4 align-self-center" style="text-align: center;">
-
                 <div class="btn-group">
-                    <button type="button" class="btn btn-xl btn-info">ATTACK!</button>
+                    <button type="button" id="attack" style="visibility:hidden" class="btn btn-xl btn-info">ATTACK!</button>
                 </div>
-
             </div>
 
-            <div class="col-md-4 ">
-                    <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                                alt="Thumbnail [100%x225]" src="./assets/images/yoda.png">
-                            <div class="card-body">
-                                <strong class="d-inline-block mb-2 text-danger">Master Yoda</strong>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm" id="cardDefender" style="visibility:hidden">
+                    <img class="card-img-top" id="imageDefender" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                        alt="Thumbnail [100%x225]" src="./assets/images/yoda.png">
+                    <div class="card-body">
+                        <strong class="d-inline-block mb-2 text-danger" id="nameDefender">Attacked character</strong>
                         <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted" id="hpDefender">HP: ??</small>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-danger">Change defender</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger" id="change">Change defender</button>
                             </div>
-                            <small class="text-muted">HP: 140</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- ******************* -->
-        <div class="row" style="text-align: center;">
-
-            <div class="col-sm-2" id="0" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/solo.png" alt="Character image" width="110" height="110">
-                <h2>Han Solo</h2>
-                <p><a class="btn btn-secondary roundBtn" id="0" href="#" role="button">Set as attacker</a></p>
-            </div>
-
-            <div class="col-sm-2" id="1" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/yoda.png" alt="Character image" width="110" height="110">
-                <h2>Master Yoda</h2>
-                <p><a class="btn btn-secondary roundBtn" id="1" href="#" role="button">Set as attacker</a></p>
-            </div>
-
-            <div class="col-sm-2" id="2" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/BenKenobi.png" alt="Character image" width="110" height="110">
-                <h2>Ben Kenobi</h2>
-                <p><a class="btn btn-secondary roundBtn" id="2" href="#" role="button">Set as attacker</a></p>
-            </div>
-
-            <div class="col-sm-2" id="3" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/darthmaul.png" alt="Character image" width="110" height="110">
-                <h2>Darth Maul</h2>
-                <p><a class="btn btn-secondary roundBtn" id="3" href="#" role="button">Set as attacker</a></p>
-            </div>
-
-            <div class="col-sm-2" id="4" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/darthvader.png" alt="Character image" width="110" height="110">
-                <h2>Darth Vader</h2>
-                <p><a class="btn btn-secondary roundBtn" id="4" href="#" role="button">Set as attacker</a></p>
-            </div>
-
-            <div class="col-sm-2" id="5" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/obiwan.png" alt="Character image" width="110" height="110">
-                <h2>Obi Wan Kenobi</h2>
-                <p><a class="btn btn-secondary roundBtn" id="5" href="#" role="button">Set as attacker</a></p>
-            </div>
-
-
-
-        </div>
-
 
     </div>
 

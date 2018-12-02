@@ -96,7 +96,7 @@ In this assignment, you'll create another fun and interactive game for web brows
   * For example, if the base Attack Power is 6, each attack will increase the Attack Power by 6 (12, 18, 24, 30 and so on).
 * The enemy character only has `Counter Attack Power`. 
 
-  * Unlike the player's `Attack Points`, `Counter Attack Power` never changes.
+  * Unlike the player's `Attack Power`, `Counter Attack Power` never changes.
 
 * The `Health Points`, `Attack Power` and `Counter Attack Power` of each character must differ.
 

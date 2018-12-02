@@ -1,8 +1,8 @@
 body {
     background-image: url("../images/spaceBG.png");
     background-color: black;
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
     color:  rgb(255, 251, 36);
 }
 
