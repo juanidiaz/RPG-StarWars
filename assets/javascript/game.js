@@ -21,8 +21,8 @@ var character2 = {
 }
 
 var character3 = {
-    name: "Ben Kenobi",
-    imageName: "benkenobi",
+    name: "Princess Leia",
+    imageName: "pleia",
     defeated: false,
     healthPoints: 140,
     attackPower: 11,
@@ -70,10 +70,7 @@ var attacks = 0;
 var wins = 0;
 var loss = 0;
 
-
 //      BOOLEAN
-var selection1 = false;
-var selection2 = false;
 
 
 // ------------------------------------------------------------
