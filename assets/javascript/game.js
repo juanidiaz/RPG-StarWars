@@ -71,99 +71,14 @@ var wins = 0;
 var loss = 0;
 
 //      BOOLEAN
-
+var gameMode = false;
 
 // ------------------------------------------------------------
 
 $(document).ready(function () {
 
-    // Player clicks to select characters
-    $(".roundBtn").on("click", function () {
-
-        if (charPlayer === "") {
-            // First character is the one to play as
-            charPlayer = parseInt(this.id);
-            console.log("Playing as: " + charArray[charPlayer].name);
-
-            // Send player info
-            console.log(charArray[charPlayer]);
-        }
-        else {
-            // Any character selection is the one to attack
-            charDefender = parseInt(this.id);
-            console.log("Attacking: " + charArray[charDefender].name);
-
-            // Send player info
-            console.log(charArray[charDefender]);
-        }
-
-        updateScreen();
-    });
-
-    // Player clicks to attack a character
-    $("#attack").on("click", function () {
-
-        // Confirm the player and Defender characters have been set
-        if (charPlayer !== "" && charDefender !== "") {
-
-            // Calculate the losses for every characters
-            var lossPlayer = charArray[charDefender].counterAttackPower;
-            var lossDefender = (charArray[charPlayer].attackPower * (attacks + 1));
-
-            // Updating the health points for both characters
-            charArray[charPlayer].healthPoints = charArray[charPlayer].healthPoints - lossPlayer;
-            charArray[charDefender].healthPoints = charArray[charDefender].healthPoints - lossDefender;
-
-            // Checking if character has been defeated
-            function isDefeated(who) {
-                if (charArray[who].healthPoints < 1) {
-                    // If health points are under 1 set character as "defeated"
-                    charArray[who].defeated = true;
-                    wins++;
-                }
-            }
-            isDefeated(charPlayer);
-            isDefeated(charDefender);
-
-            // Log a detailed explanation of the calculation
-            console.log("Player loss: " + lossPlayer + "     ( " + charArray[charPlayer].healthPoints + " ) = Player HP - ( " + charArray[charDefender].counterAttackPower + " )");
-            console.log("Defender loss: " + lossDefender + "     ( " + charArray[charDefender].healthPoints + " ) = Defender HP - ( " + charArray[charPlayer].attackPower + " ) * ( " + attacks + " + 1 ) )");
-
-            // Increase the attacks count
-            attacks++;
-
-            // Log the status of the two characters
-            logStats();
-        }
-        else {
-            // This case would never happen.. but just in case!
-            alert("ERROR: Either a player or defender character have not been selected!")
-        }
-        updateScreen();
-
-    });
-
-    // Select another defenter character
-    $("#change").on("click", function () {
-
-        // Hide Defender's card
-        $("#cardDefender").css("visibility", "hidden");
-
-        // Return selected character as Defender to character list
-        $("#" + charDefender).css("visibility", "visible");
-        $("." + charDefender).css("visibility", "visible");
-
-        // Show all buttons
-        $(".roundBtn").css("visibility", "visible");
-
-        // Show ATTACK button
-        $("#attack").css("visibility", "hidden");
-
-        // Clear selected Defender
-        charDefender = "";
-
-        updateScreen();
-    })
+    // First load... lets play!
+    gameMode = true;
 
     // Show stats of game (needs player and defender defined)
     function logStats() {
@@ -197,12 +112,6 @@ $(document).ready(function () {
                 $("#" + i).css("visibility", "hidden");
                 $("." + (i + 1)).css("visibility", "visible");
             }
-
-        }
-
-        if (charPlayer === "") {        // If no character has been set as player
-
-            // Initial state
 
         }
 
@@ -277,9 +186,6 @@ $(document).ready(function () {
 
         if (charDefender !== "") {
             if (charArray[charDefender].defeated) {
-                console.log("Character " + charArray[charDefender].name + " has been defeated.")
-                console.log(charArray[charDefender])
-
                 // The crard will not show the heath ponts anymore
                 $("#hpDefender").text("DEFEATED!");
 
@@ -287,11 +193,144 @@ $(document).ready(function () {
                 $("#attack").css("visibility", "hidden");
             }
         }
-
-
-
-
     }
+
+    // Initialize all for new match
+    function initializeAll() {
+        // REDRAW
+        charPlayer = "";
+        charDefender = "";
+        attacks = 0;
+
+        for (var i = 0; i < charArray.length; i++) {
+            charArray[i].defeated = false;
+        }
+
+        updateScreen();
+    }
+
+    // Player has been defeated!
+    function lostGame() {
+
+        // Game lost... re-draw
+        gameMode = false;
+
+        // Increase loss counter
+        loss++;
+
+        // Increase matches counter
+        matches++;
+
+        // Alert user that the player has been defeated!
+        alert("Your character " + charArray[charPlayer].name + " has been defeated by " + charArray[charDefender].name);
+
+        // Invite to play again
+        alert("To play again select a character to play");
+
+        initializeAll();
+    }
+
+    // Player clicks to select characters
+    $(".roundBtn").on("click", function () {
+
+        if (charPlayer === "") {
+            // First character is the one to play as
+            charPlayer = parseInt(this.id);
+            console.log("Playing as: " + charArray[charPlayer].name);
+
+            // Send player info
+            console.log(charArray[charPlayer]);
+        }
+        else {
+            // Any character selection is the one to attack
+            charDefender = parseInt(this.id);
+            console.log("Attacking: " + charArray[charDefender].name);
+
+            // Send player info
+            console.log(charArray[charDefender]);
+        }
+
+        updateScreen();
+    });
+
+    // Player clicks to attack a character
+    $("#attack").on("click", function () {
+
+        // Confirm the player and Defender characters have been set
+        if (charPlayer !== "" && charDefender !== "") {
+
+            // Checking if character has been defeated
+            function isDefeated(who) {
+                if (charArray[who].healthPoints < 1) {
+                    // If health points are under 1 set character as "defeated"
+                    charArray[who].defeated = true;
+                    // wins++;
+
+                    if (charArray[charPlayer].defeated) {
+                        // Player has been defeated... game lost
+
+                        console.log("Player character has been defeated. Game over!");
+                        lostGame()
+                    }
+
+                    if (charArray[charDefender].defeated) {
+                        // Defender character has been defeated
+                        wins++;
+                        console.log("Character " + charArray[charDefender].name + " has been defeated.");
+                    }
+                }
+            }
+
+            // Calculate the losses for every characters
+            var lossPlayer = charArray[charDefender].counterAttackPower;
+            var lossDefender = (charArray[charPlayer].attackPower * (attacks + 1));
+
+            // Updating the health points for both characters
+            charArray[charPlayer].healthPoints = charArray[charPlayer].healthPoints - lossPlayer;
+            charArray[charDefender].healthPoints = charArray[charDefender].healthPoints - lossDefender;
+
+            isDefeated(charPlayer);
+            isDefeated(charDefender);
+
+            // Log a detailed explanation of the calculation
+            console.log("Player loss: " + lossPlayer + "     ( " + charArray[charPlayer].healthPoints + " ) = Player HP - ( " + charArray[charDefender].counterAttackPower + " )");
+            console.log("Defender loss: " + lossDefender + "     ( " + charArray[charDefender].healthPoints + " ) = Defender HP - ( " + charArray[charPlayer].attackPower + " ) * ( " + attacks + " + 1 ) )");
+
+            // Increase the attacks count
+            attacks++;
+
+            // Log the status of the two characters
+            logStats();
+        }
+        else {
+            // This case would never happen.. but just in case!
+            alert("ERROR: Either a player or defender character have not been selected!")
+        }
+        updateScreen();
+
+    });
+
+    // Select another defenter character
+    $("#change").on("click", function () {
+
+        // Hide Defender's card
+        $("#cardDefender").css("visibility", "hidden");
+
+        // Return selected character as Defender to character list
+        $("#" + charDefender).css("visibility", "visible");
+        $("." + charDefender).css("visibility", "visible");
+
+        // Show all buttons
+        $(".roundBtn").css("visibility", "visible");
+
+        // Show ATTACK button
+        $("#attack").css("visibility", "hidden");
+
+        // Clear selected Defender
+        charDefender = "";
+
+        updateScreen();
+    })
 
     updateScreen();
 });
