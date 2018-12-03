@@ -25,63 +25,95 @@
 
     <nav class="site-header sticky-top py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#">XXX</a>
+            <!-- <a class="py-2" href="#">XXX</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
+            <a class="py-2 d-none d-md-inline-block" href="#">Product</a> -->
+            <a class="py-2" id="statsName">Current selected character: <b>NONE SELECTED</b></a>
+            <a class="py-2 d-none d-md-inline-block" id="statsHP">HP: <b>--</b></a>
+            <a class="py-2 d-none d-md-inline-block" id="statsWins">Attackers defeated: <b>0</b></a>
+            <a class="py-2 d-none d-md-inline-block" id="statsMatches">Games played: <b>0</b></a>
+            <a class="py-2 d-none d-md-inline-block" id="statsLoss">Games lost: <b>0</b></a>
         </div>
     </nav>
 
-    <div class="gameinfo-header py-1">
+    <!-- <div class="gameinfo-header py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
             <span id="statsName">Current selected character: <b>NONE SELECTED</b></span>
             <span id="statsHP">HP: <b>--</b></span>
-            <span id="statsWins">Games won: <b>0</b></span>
+            <span id="statsWins">Attackers defeated: <b>0</b></span>
             <span id="statsMatches">Games played: <b>0</b></span>
 
         </div>
-    </div>
+    </div> -->
 
     <div class="container">
         <!-- ************* CHARACTER LIST ************* -->
         <div class="row justify-content-between" style="text-align: center;">
 
-            <div class="col-sm-2" id="0" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/solo.png" alt="Character image" width="110" height="110">
-                <h2>Han Solo</h2>
-                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="0" href="#" role="button">Set as Player</a></p>
+            <div class="col-sm-2 0" style="visibility:visible; display:inline">
+                <img class="rounded-circle" id="charImage1" src="https://placehold.it/225x225" alt="Character image"
+                    width="110" height="110">
+                <span id="charName1">
+                    <h2>Character Name 1</h2>
+                </span>
+                <p id="charButton1 0"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
+                        id="0" href="#" role="button">Set as
+                        Player</a></p>
             </div>
 
-            <div class="col-sm-2" id="1" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/yoda.png" alt="Character image" width="110" height="110">
-                <h2>Master Yoda</h2>
-                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="1" href="#" role="button">Set as Player</a></p>
+            <div class="col-sm-2 1" style="visibility:visible; display:inline">
+                <img class="rounded-circle" id="charImage2" src="https://placehold.it/225x225" alt="Character image"
+                    width="110" height="110">
+                <span id="charName2">
+                    <h2>Character Name 2</h2>
+                </span>
+                <p id="charButton2 1"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
+                        id="1" href="#" role="button">Set as
+                        Player</a></p>
             </div>
 
-            <div class="col-sm-2" id="2" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/BenKenobi.png" alt="Character image" width="110"
-                    height="110">
-                <h2>Ben Kenobi</h2>
-                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="2" href="#" role="button">Set as Player</a></p>
+            <div class="col-sm-2 2" style="visibility:visible; display:inline">
+                <img class="rounded-circle" id="charImage3" src="https://placehold.it/225x225" alt="Character image"
+                    width="110" height="110">
+                <span id="charName3">
+                    <h2>Character Name 3</h2>
+                </span>
+                <p id="charButton3 2"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
+                        id="2" href="#" role="button">Set as
+                        Player</a></p>
             </div>
 
-            <div class="col-sm-2" id="3" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/darthmaul.png" alt="Character image" width="110"
-                    height="110">
-                <h2>Darth Maul</h2>
-                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="3" href="#" role="button">Set as Player</a></p>
+            <div class="col-sm-2 3" style="visibility:visible; display:inline">
+                <img class="rounded-circle" id="charImage4" src="https://placehold.it/225x225" alt="Character image"
+                    width="110" height="110">
+                <span id="charName4">
+                    <h2>Character Name 4</h2>
+                </span>
+                <p id="charButton4 3"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
+                        id="3" href="#" role="button">Set as
+                        Player</a></p>
             </div>
 
-            <div class="col-sm-2" id="4" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/darthvader.png" alt="Character image" width="110"
-                    height="110">
-                <h2>Darth Vader</h2>
-                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="4" href="#" role="button">Set as Player</a></p>
+            <div class="col-sm-2 4" style="visibility:visible; display:inline">
+                <img class="rounded-circle" id="charImage5" src="https://placehold.it/225x225" alt="Character image"
+                    width="110" height="110">
+                <span id="charName5">
+                    <h2>Character Name 5</h2>
+                </span>
+                <p id="charButton5 4"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
+                        id="4" href="#" role="button">Set as
+                        Player</a></p>
             </div>
 
-            <div class="col-sm-2" id="5" style="display:inline">
-                <img class="rounded-circle" src="./assets/images/obiwan.png" alt="Character image" width="110" height="110">
-                <h2>Obi Wan Kenobi</h2>
-                <p><a class="btn btn-success roundBtn" style="visibility:visible" id="5" href="#" role="button">Set as Player</a></p>
+            <div class="col-sm-2 5" style="visibility:visible; display:inline">
+                <img class="rounded-circle" id="charImage6" src="https://placehold.it/225x225" alt="Character image"
+                    width="110" height="110">
+                <span id="charName6">
+                    <h2>Character Name 6</h2>
+                </span>
+                <p id="charButton6 5"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
+                        id="5" href="#" role="button">Set as
+                        Player</a></p>
             </div>
 
         </div>
