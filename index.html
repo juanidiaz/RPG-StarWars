@@ -25,9 +25,9 @@
 
     <nav class="site-header sticky-top py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" id="statsName">Current selected character: <b>NONE SELECTED</b></a>
-            <a class="py-2 d-none d-md-inline-block" id="statsHP">HP: <b>--</b></a>
-            <a class="py-2 d-none d-md-inline-block" id="statsWins">Attackers defeated: <b>0</b></a>
+            <a class="py-2" id="statsName">Current selected character: <b>xx</b></a>
+            <a class="py-2 d-none d-md-inline-block" id="statsHP">HP: <b>xx</b></a>
+            <a class="py-2 d-none d-md-inline-block" id="statsWins">Defender defeated: <b>0</b></a>
             <a class="py-2 d-none d-md-inline-block" id="statsMatches">Games played: <b>0</b></a>
             <a class="py-2 d-none d-md-inline-block" id="statsLoss">Games lost: <b>0</b></a>
         </div>
@@ -43,9 +43,8 @@
                 <span id="charName1">
                     <h2>Character Name 1</h2>
                 </span>
-                <p id="charButton1 0"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
-                        id="0" href="#" role="button">Set as
-                        Player</a></p>
+                <p id="charButton1 0"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
+                        id="0" href="#" role="button">Button 1</a></p>
             </div>
 
             <div class="col-sm-2 1" style="visibility:visible; display:inline">
@@ -54,9 +53,8 @@
                 <span id="charName2">
                     <h2>Character Name 2</h2>
                 </span>
-                <p id="charButton2 1"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
-                        id="1" href="#" role="button">Set as
-                        Player</a></p>
+                <p id="charButton2 1"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                        id="1" href="#" role="button">Button 2</a></p>
             </div>
 
             <div class="col-sm-2 2" style="visibility:visible; display:inline">
@@ -65,9 +63,8 @@
                 <span id="charName3">
                     <h2>Character Name 3</h2>
                 </span>
-                <p id="charButton3 2"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
-                        id="2" href="#" role="button">Set as
-                        Player</a></p>
+                <p id="charButton3 2"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                        id="2" href="#" role="button">Button 3</a></p>
             </div>
 
             <div class="col-sm-2 3" style="visibility:visible; display:inline">
@@ -76,9 +73,8 @@
                 <span id="charName4">
                     <h2>Character Name 4</h2>
                 </span>
-                <p id="charButton4 3"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
-                        id="3" href="#" role="button">Set as
-                        Player</a></p>
+                <p id="charButton4 3"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                        id="3" href="#" role="button">Button 4</a></p>
             </div>
 
             <div class="col-sm-2 4" style="visibility:visible; display:inline">
@@ -87,9 +83,8 @@
                 <span id="charName5">
                     <h2>Character Name 5</h2>
                 </span>
-                <p id="charButton5 4"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
-                        id="4" href="#" role="button">Set as
-                        Player</a></p>
+                <p id="charButton5 4"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                        id="4" href="#" role="button">Button 5</a></p>
             </div>
 
             <div class="col-sm-2 5" style="visibility:visible; display:inline">
@@ -98,9 +93,8 @@
                 <span id="charName6">
                     <h2>Character Name 6</h2>
                 </span>
-                <p id="charButton6 5"><a class="btn btn-success roundBtn" style="visibility:visible; display:inline;"
-                        id="5" href="#" role="button">Set as
-                        Player</a></p>
+                <p id="charButton6 5"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                        id="5" href="#" role="button">Button 6</a></p>
             </div>
 
         </div>
@@ -122,8 +116,11 @@
             </div>
 
             <div class="col-md-4 align-self-center" style="text-align: center;">
-                <div class="btn-group">
-                    <button type="button" id="attack" style="visibility:hidden" class="btn btn-xl btn-info">ATTACK!</button>
+                <div class="btn-group" id="attack" style="visibility:hidden">
+                    <div id="attackInfo">
+                        <p>You attacked <b>Obi Wan Kenobi</b> for <i>14</i> damage and suffered a <i>14</i> damage.</p>
+                        <p><button type="button" class="btn btn-xl btn-info">ATTACK!</button></p>
+                    </div>
                 </div>
             </div>
 
