@@ -34,6 +34,7 @@
     </nav>
 
     <div class="container">
+
         <!-- ************* CHARACTER LIST ************* -->
         <div class="row justify-content-between mt-3" style="text-align: center;">
 
@@ -106,7 +107,6 @@
         </div>
 
         <!-- ************* PLAYER & Defender CARDS ************* -->
-
         <div class="row mt-3" id="cards">
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm" id="cardPlayer" style="visibility:visible">
@@ -150,19 +150,25 @@
                 </div>
             </div>
         </div>
-        <!-- ******************* -->
 
-        <div class="jumbotron mt-3" style="display: none" id="mainMessage">
+        <!-- ******************** JUMBOTRON ******************** -->
+        <div class="jumbotron mt-3" style="display: none">
+            <div id="mainMessage">
                 <h1>Winner!!</h1>
                 <h2>The force is strong with you <b>NOBODY</b></h2>
-                <p class="lead" id="secondMessage">Contratulations! You have defeated all the characters!</p>
-                <button type="button" class="btn btn-warning" id="again">Play again</button>
+                <p class="lead">Contratulations! You have defeated all the characters!</p>
+            </div>
+            <button type="button" class="btn btn-warning" id="again">Play again</button>
         </div>
+        <!-- *************************************************** -->
 
-
-
+<!-- 
+        ============================================
+        ===== USE THIS ONLY FOR TROUBLSHOOTING =====
         <button type="button" class="btn btn-warning" id="update">Update Screen</button>
         <button type="button" class="btn btn-info" id="toggle">TOGGLE</button>
+        ============================================
+ -->
     </div>
 
     <script src="./assets/javascript/game.js"></script>

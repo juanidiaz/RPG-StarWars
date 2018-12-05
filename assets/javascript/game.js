@@ -84,7 +84,6 @@ $(document).ready(function () {
 
     // Show stats of game (needs player and defender defined)
     function logStats() {
-        // USe this funtion to log the game stats
 
         console.log("----------------------")
         console.log("  PLAYER STATS")
@@ -258,24 +257,22 @@ $(document).ready(function () {
         if (wins == (charArray.length - 1)) {
 
             // Player wins game
-            alert("Player Wins game")
+            // alert("Player Wins game")
 
             // Increase matches counter
             matches++;
 
-            $("#mainMessage").html("<h1>Winner!!</h1><h2>The force is strong with you <b>" + charArray[charPlayer].name + "</b></h2><button type=\"button\" class=\"btn btn-warning\" id=\"again\">Play again</button>");
-            $("#secondMessage").html("Contratulations! You have defeated all the characters!");
+            $("#mainMessage").html("<h1>Winner!!</h1><h2>The force is strong with you <b>" + charArray[charPlayer].name + "</b></h2><p class=\"lead\">Contratulations! You have defeated all the characters!</p>");
 
         } else {
 
             // Player lose the game
-            alert("Your character " + charArray[charPlayer].name + " has been defeated by " + charArray[charDefender].name);
+            // alert("Your character " + charArray[charPlayer].name + " has been defeated by " + charArray[charDefender].name);
 
             // Increase loss counter
             loss++;
 
-            $("#mainMessage").html("<h1>GAME OVER</h1><h2>The force was weak with you <b>" + charArray[charPlayer].name + "</b></h2><button type=\"button\" class=\"btn btn-warning\" id=\"again\">Play again</button>");
-            $("#secondMessage").html("Better luck next time");
+            $("#mainMessage").html("<h1>** GAME OVER **</h1><h2>The force was weak with you <b>" + charArray[charPlayer].name + "</b></h2><p class=\"lead\">Go... train and try again</p>");
         }
 
         // Reset basic variables
@@ -303,7 +300,6 @@ $(document).ready(function () {
         // Show message board and hide cards
         $(".jumbotron").css("display", "");
         $("#cards").css("display", "none");
-
     }
 
     // Player clicks to select characters
@@ -424,35 +420,44 @@ $(document).ready(function () {
         updateScreen();
     });
 
-    $("#update").on("click", function () {
-        updateScreen();
-    });
-
+    // Click play again once match is over
     $("#again").on("click", function () {
-        alert("play again");
-        
+
+        // Hide jumbotron and show cards
         $("#cards").css("display", "");
         $(".jumbotron").css("display", "none");
 
+        console.log("play again");
+
         updateScreen();
     });
 
-    var show = true;
-    $("#toggle").on("click", function () {
-        console.log("Toggle: " + show);
-        if (show) {
-            $("#cards").css("display", "");
-            $(".jumbotron").css("display", "none");
-            show = false;
-        }
-        else {
-            $("#cards").css("display", "none");
-            $(".jumbotron").css("display", "");
-            show = true;
-        }
-    });
+    // // ============================================
+    // // ===== USE THIS ONLY FOR TROUBLSHOOTING =====
 
+    // // Manually update screen
+    // $("#update").on("click", function () {
+    //     updateScreen();
+    // });
 
+    // // Toggle the cards and jumbotron
+    // var show = true;
+    // $("#toggle").on("click", function () {
+    //     console.log("Toggle: " + show);
+    //     if (show) {
+    //         // Show cards
+    //         $("#cards").css("display", "");
+    //         $(".jumbotron").css("display", "none");
+    //         show = false;
+    //     }
+    //     else {
+    //         // Show jumbotron
+    //         $("#cards").css("display", "none");
+    //         $(".jumbotron").css("display", "");
+    //         show = true;
+    //     }
+    // });
+    // // ============================================
 
-    // updateScreen();
+    updateScreen();
 });
