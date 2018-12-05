@@ -42,6 +42,7 @@
                     width="110" height="110">
                 <span id="charName1">
                     <h2>Character Name 1</h2>
+                    <p style="color:white;">HP: --</p>
                 </span>
                 <p id="charButton1 0"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
                         id="0" href="#" role="button">Button 1</a></p>
@@ -52,8 +53,9 @@
                     width="110" height="110">
                 <span id="charName2">
                     <h2>Character Name 2</h2>
+                    <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton2 1"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton2 1"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
                         id="1" href="#" role="button">Button 2</a></p>
             </div>
 
@@ -62,8 +64,9 @@
                     width="110" height="110">
                 <span id="charName3">
                     <h2>Character Name 3</h2>
+                    <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton3 2"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton3 2"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
                         id="2" href="#" role="button">Button 3</a></p>
             </div>
 
@@ -72,8 +75,9 @@
                     width="110" height="110">
                 <span id="charName4">
                     <h2>Character Name 4</h2>
+                    <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton4 3"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton4 3"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
                         id="3" href="#" role="button">Button 4</a></p>
             </div>
 
@@ -82,8 +86,9 @@
                     width="110" height="110">
                 <span id="charName5">
                     <h2>Character Name 5</h2>
+                    <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton5 4"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton5 4"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
                         id="4" href="#" role="button">Button 5</a></p>
             </div>
 
@@ -92,8 +97,9 @@
                     width="110" height="110">
                 <span id="charName6">
                     <h2>Character Name 6</h2>
+                    <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton6 5"><a class="btn btn-secondary Buttondisabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton6 5"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
                         id="5" href="#" role="button">Button 6</a></p>
             </div>
 
@@ -101,13 +107,15 @@
 
         <!-- ************* PLAYER & Defender CARDS ************* -->
 
-        <div class="row mt-3">
+        <div class="row mt-3" id="cards">
             <div class="col-md-4">
-                <div class="card mb-4 shadow-sm" id="cardPLayer" style="visibility:hidden">
+                <div class="card mb-4 shadow-sm" id="cardPlayer" style="visibility:visible">
                     <img class="card-img-top" id="imagePlayer" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
                         alt="Thumbnail [100%x225]" src="https://placehold.it/225x225">
                     <div class="card-body">
-                        <strong class="d-inline-block mb-2 text-success" id="namePlayer">Player character</strong>
+                        <h3>Your character</h3>
+                        <strong class="d-inline-block mb-2 text-success display-4" id="namePlayer" style="text-align:right">Player
+                            character</strong>
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="text-muted" id="hpPlayer">HP: ??</small>
                         </div>
@@ -116,20 +124,22 @@
             </div>
 
             <div class="col-md-4 align-self-center" style="text-align: center;">
-                <div class="btn-group" id="attack" style="visibility:hidden">
+                <div class="btn-group" id="attack" style="visibility:visible">
                     <div id="attackInfo">
-                        <p>You attacked <b>Obi Wan Kenobi</b> for <i>14</i> damage and suffered a <i>14</i> damage.</p>
-                        <p><button type="button" class="btn btn-xl btn-info">ATTACK!</button></p>
+                        <p>You attacked <b>NOBODY</b> for <i>no</i> damage and suffered a <i>none</i> damage.</p>
+                        <p><button type="button" class="btn btn-lg disabled btn-info">ATTACK!</button></p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="card mb-4 shadow-sm" id="cardDefender" style="visibility:hidden">
+                <div class="card mb-4 shadow-sm" id="cardDefender" style="visibility:visible">
                     <img class="card-img-top" id="imageDefender" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                        alt="Thumbnail [100%x225]" src="./assets/images/yoda.png">
+                        alt="Thumbnail [100%x225]" src="https://placehold.it/225x225">
                     <div class="card-body">
-                        <strong class="d-inline-block mb-2 text-danger" id="nameDefender">Attacked character</strong>
+                        <h3>Defender</h3>
+                        <strong class="d-inline-block mb-2 text-danger display-4" id="nameDefender" style="text-align:right">Attacked
+                            character</strong>
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="text-muted" id="hpDefender">HP: ??</small>
                             <div class="btn-group">
@@ -142,16 +152,18 @@
         </div>
         <!-- ******************* -->
 
+        <div class="jumbotron mt-3" style="display: none" id="mainMessage">
+                <h1>Winner!!</h1>
+                <h2>The force is strong with you <b>NOBODY</b></h2>
+                <p class="lead" id="secondMessage">Contratulations! You have defeated all the characters!</p>
+                <button type="button" class="btn btn-warning" id="again">Play again</button>
+        </div>
+
+
+
+        <button type="button" class="btn btn-warning" id="update">Update Screen</button>
+        <button type="button" class="btn btn-info" id="toggle">TOGGLE</button>
     </div>
-
-
-
-
-
-
-
-
-
 
     <script src="./assets/javascript/game.js"></script>
 

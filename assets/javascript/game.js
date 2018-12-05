@@ -103,12 +103,20 @@ $(document).ready(function () {
     // Updates site... makes the pretty magic :)
     function updateScreen() {
 
+        if (!gameMode) {
+            gameEnd();
+            return;
+        }
+
         for (var i = 0; i < charArray.length; i++) {
-            $("#charName" + (i + 1)).html("<h2>" + charArray[i].name + "</h2><p style=\"color:white;\">" + charArray[i].healthPoints + "</p>");
+            $("#charName" + (i + 1)).html("<h2>" + charArray[i].name + "</h2><p style=\"color:white;\">HP: " + charArray[i].healthPoints + "</p>");
             $("#charImage" + (i + 1)).attr("src", "./assets/images/" + charArray[i].imageName + ".png");
         }
 
         if (charPlayer === "") {         // INITIAL MODE
+
+            // Add the fight stuff
+            // $("#cards").html(" <div class=\"col-md-4\"> <div class=\"card mb-4 shadow-sm\" id=\"cardPlayer\" style=\"visibility:visible\"> <img class=\"card-img-top\" id=\"imagePlayer\" data-src=\"holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail\" alt=\"Thumbnail [100%x225]\" src=\"https://placehold.it/225x225\"> <div class=\"card-body\"> <h3>Your character</h3> <strong class=\"d-inline-block mb-2 text-success display-4\" id=\"namePlayer\" style=\"text-align:right\">Player character</strong> <div class=\"d-flex justify-content-between align-items-center\"> <small class=\"text-muted\" id=\"hpPlayer\">HP: ??</small> </div> </div> </div> </div> <div class=\"col-md-4 align-self-center\" style=\"text-align: center;\"> <div class=\"btn-group\" id=\"attack\" style=\"visibility:visible\"> <div id=\"attackInfo\"> <p>You attacked <b>NOBODY</b> for <i>no</i> damage and suffered a <i>none</i> damage.</p> <p><button type=\"button\" class=\"btn btn-lg disabled btn-info\">ATTACK!</button></p> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"card mb-4 shadow-sm\" id=\"cardDefender\" style=\"visibility:visible\"> <img class=\"card-img-top\" id=\"imageDefender\" data-src=\"holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail\" alt=\"Thumbnail [100%x225]\" src=\"https://placehold.it/225x225\"> <div class=\"card-body\"> <h3>Defender</h3> <strong class=\"d-inline-block mb-2 text-danger display-4\" id=\"nameDefender\" style=\"text-align:right\">Attacked character</strong> <div class=\"d-flex justify-content-between align-items-center\"> <small class=\"text-muted\" id=\"hpDefender\">HP: ??</small> <div class=\"btn-group\"> <button type=\"button\" class=\"btn btn-sm btn-outline-danger\" id=\"change\">Change defender</button> </div> </div> </div> </div> </div>");
 
             // Populate game stat banner
             $("#statsName").html("Current selected character: <b>NONE SELECTED</b>");
@@ -117,21 +125,31 @@ $(document).ready(function () {
             $("#statsMatches").html("Games played: <b>" + matches + "</b>");
             $("#statsLoss").html("Games lost: <b>" + loss + "</b>");
 
-            // Resetting sme variables
-            charPlayer = "";
-            charDefender = "";
+            // Resetting game variables
             attacks = 0;
-
-            // Updating character list
             for (var i = 0; i < charArray.length; i++) {
                 charArray[i].defeated = false;
+                $("#" + i).css("visibility", "visible");    // Show button
+                $("." + i).css("visibility", "visible");    // Show info
             }
 
             // Changing look of buttons from GRAY to GREEN
             $(".roundBtn").text("Select as Player");
             $(".roundBtn").removeClass("disabled");
             $(".roundBtn").removeClass("btn-secondary");
+            $(".roundBtn").removeClass("btn-danger");
             $(".roundBtn").addClass("btn-success");
+
+            // Hiding both cards
+            $("#cardPlayer").css("visibility", "hidden");
+            $("#cardDefender").css("visibility", "hidden");
+
+            // Hiding ATTACK button and info
+            $("#attackInfo").html("");
+
+            // Hide jumbotron
+            $("#cards").css("display", "");
+
         }
 
         if (charPlayer !== "") {         // Only if a character has been set as player
@@ -155,7 +173,7 @@ $(document).ready(function () {
             $("#hpPlayer").text("HP: " + charArray[charPlayer].healthPoints);
 
             // Display player's card
-            $("#cardPLayer").css("visibility", "visible");
+            $("#cardPlayer").css("visibility", "visible");
 
             // Changing look of buttons from GREEN to RED
             $(".roundBtn").text("Set as defender");
@@ -210,18 +228,20 @@ $(document).ready(function () {
             $("#attack").css("visibility", "visible");
 
             // Show attack stats
-            if (!firstAttack) {
-                $("#attackInfo").html("<p>You attacked <b>" + charArray[charDefender].name + "</b> for <i>" + lossDefender + "</i> damage and suffered a <i>" + lossPlayer + "</i> damage.</p><p><button type=\"button\" class=\"btn btn-xl btn-info\">ATTACK!</button></p>");
+            if (firstAttack) {
+                // If first attack just show button
+                $("#attackInfo").html("<button type=\"button\" class=\"btn btn-lg btn-info\">ATTACK!</button></p>");
             }
             else {
-                $("#attackInfo").html("<button type=\"button\" class=\"btn btn-xl btn-info\">ATTACK!</button>");
+                // If NOT the first attack show button and stats
+                $("#attackInfo").html("<p>You attacked <b>" + charArray[charDefender].name + "</b> for <i>" + lossDefender + "</i> damage and suffered a <i>" + lossPlayer + "</i> damage.</p><p><button type=\"button\" class=\"btn btn-lg btn-info\">ATTACK!</button></p>");
             }
         }
 
-        // console.log("Defated state of " + charDefender + " = " + charArray[charDefender].defeated);
-
         if (charDefender !== "") {
+
             if (charArray[charDefender].defeated) {
+
                 // The crard will not show the heath ponts anymore
                 $("#hpDefender").text("DEFEATED!");
 
@@ -232,24 +252,58 @@ $(document).ready(function () {
     }
 
     // Player has been defeated!
-    function lostGame() {
+    function gameEnd() {
 
-        // Game lost... re-draw
-        // gameMode = false;
 
-        // Increase loss counter
-        loss++;
+        if (wins == (charArray.length - 1)) {
 
-        // Increase matches counter
-        matches++;
+            // Player wins game
+            alert("Player Wins game")
 
-        // Alert user that the player has been defeated!
-        alert("Your character " + charArray[charPlayer].name + " has been defeated by " + charArray[charDefender].name);
+            // Increase matches counter
+            matches++;
 
-        // Invite to play again
-        alert("To play again select a character to play");
+            $("#mainMessage").html("<h1>Winner!!</h1><h2>The force is strong with you <b>" + charArray[charPlayer].name + "</b></h2><button type=\"button\" class=\"btn btn-warning\" id=\"again\">Play again</button>");
+            $("#secondMessage").html("Contratulations! You have defeated all the characters!");
 
-        updateScreen();
+        } else {
+
+            // Player lose the game
+            alert("Your character " + charArray[charPlayer].name + " has been defeated by " + charArray[charDefender].name);
+
+            // Increase loss counter
+            loss++;
+
+            $("#mainMessage").html("<h1>GAME OVER</h1><h2>The force was weak with you <b>" + charArray[charPlayer].name + "</b></h2><button type=\"button\" class=\"btn btn-warning\" id=\"again\">Play again</button>");
+            $("#secondMessage").html("Better luck next time");
+        }
+
+        // Reset basic variables
+        charPlayer = "";
+        charDefender = "";
+        gameMode = true;
+
+        // Reset values for all characters
+        character1.healthPoints = 120;
+        character1.attackPower = 7;
+        character2.healthPoints = 130;
+        character2.attackPower = 9;
+        character3.healthPoints = 140;
+        character3.attackPower = 11;
+        character4.healthPoints = 150;
+        character4.attackPower = 13;
+        character5.healthPoints = 160;
+        character5.attackPower = 15;
+        character6.healthPoints = 170;
+        character6.attackPower = 17;
+
+        // Disable all buttons
+        $(".roundBtn").addClass("disabled");
+
+        // Show message board and hide cards
+        $(".jumbotron").css("display", "");
+        $("#cards").css("display", "none");
+
     }
 
     // Player clicks to select characters
@@ -284,31 +338,33 @@ $(document).ready(function () {
             // Checking if character has been defeated
             function isDefeated(who) {
 
-                console.log("*****************");
-                console.log("Who: " + who);
-                console.log("*****************");
-
                 // Only if health points are under 1 
                 if (charArray[who].healthPoints < 1) {
-
-                    console.log("   SOMEONE WAS DEFEATED   ");
-                    console.log("**************************");
 
                     // Set character as "defeated"
                     charArray[who].defeated = true;
 
+                    // If player has been defeated... GAME OVER
                     if (who === charPlayer) {
-                        // Player has been defeated... game lost
 
-                        console.log("Player character has been defeated. Game over!");
-                        // lostGame()
+                        // Stop game
+                        gameMode = false;
                     }
 
+                    // If a defender character has been defeated
                     if (who === charDefender) {
-                        // Defender character has been defeated
 
-                        // Show one more defender done
+                        // Increase win counter
                         wins++;
+
+                        // If all characters have been defeated... YOU WIN
+                        if (wins == (charArray.length - 1)) {
+
+                            // Stop game
+                            gameMode = false;
+                        }
+
+                        // Log who was defeated
                         console.log("Character " + charArray[charDefender].name + " has been defeated.");
                     }
                 }
@@ -322,7 +378,7 @@ $(document).ready(function () {
             charArray[charPlayer].healthPoints = charArray[charPlayer].healthPoints - lossPlayer;
             charArray[charDefender].healthPoints = charArray[charDefender].healthPoints - lossDefender;
 
-            // isDefeated(charPlayer);
+            isDefeated(charPlayer);
             isDefeated(charDefender);
 
             // Log a detailed explanation of the calculation
@@ -364,9 +420,39 @@ $(document).ready(function () {
         charDefender = "";
 
         firstAttack = true;
-        
-        updateScreen();
-    })
 
-    updateScreen();
+        updateScreen();
+    });
+
+    $("#update").on("click", function () {
+        updateScreen();
+    });
+
+    $("#again").on("click", function () {
+        alert("play again");
+        
+        $("#cards").css("display", "");
+        $(".jumbotron").css("display", "none");
+
+        updateScreen();
+    });
+
+    var show = true;
+    $("#toggle").on("click", function () {
+        console.log("Toggle: " + show);
+        if (show) {
+            $("#cards").css("display", "");
+            $(".jumbotron").css("display", "none");
+            show = false;
+        }
+        else {
+            $("#cards").css("display", "none");
+            $(".jumbotron").css("display", "");
+            show = true;
+        }
+    });
+
+
+
+    // updateScreen();
 });
