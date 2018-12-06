@@ -2,59 +2,23 @@
 
 //      OBJECTS
 
-var character1 = {
-    name: "Han Solo",
-    imageName: "solo",
-    defeated: false,
-    healthPoints: 120,
-    attackPower: 7,
-    counterAttackPower: 10,
+// Creating a "Character" object using constructor notation
+function Character(name, imageName, defeated, healthPoints, attackPower, counterAttackPower) {
+    this.name = name;
+    this.imageName = imageName;
+    this.defeated = defeated;
+    this.healthPoints = healthPoints;
+    this.attackPower = attackPower;
+    this.counterAttackPower = counterAttackPower;
 }
 
-var character2 = {
-    name: "Master Yoda",
-    imageName: "yoda",
-    defeated: false,
-    healthPoints: 130,
-    attackPower: 9,
-    counterAttackPower: 12,
-}
-
-var character3 = {
-    name: "Princess Leia",
-    imageName: "pleia",
-    defeated: false,
-    healthPoints: 140,
-    attackPower: 11,
-    counterAttackPower: 14,
-}
-
-var character4 = {
-    name: "Darth Maul",
-    imageName: "darthmaul",
-    defeated: false,
-    healthPoints: 150,
-    attackPower: 13,
-    counterAttackPower: 16,
-}
-
-var character5 = {
-    name: "Darth Vader",
-    imageName: "darthvader",
-    defeated: false,
-    healthPoints: 160,
-    attackPower: 15,
-    counterAttackPower: 18,
-}
-
-var character6 = {
-    name: "Obi Wan Kenobi",
-    imageName: "obiwan",
-    defeated: false,
-    healthPoints: 170,
-    attackPower: 17,
-    counterAttackPower: 20,
-}
+// Creating an object for every character
+var character1 = new Character("Han Solo", "solo", false, 120, 7, 10);
+var character2 = new Character("Master Yoda", "yoda", false, 130, 9, 12);
+var character3 = new Character("Princess Leia", "pleia", false, 140, 11, 14);
+var character4 = new Character("Darth Maul", "darthmaul", false, 150, 13, 16);
+var character5 = new Character("Darth Vader", "darthvader", false, 160, 15, 18);
+var character6 = new Character("Obi Wan Kenobi", "obiwan", false, 170, 17, 20);
 
 //      ARRAYS
 charArray = [character1, character2, character3, character4, character5, character6];
@@ -72,6 +36,7 @@ var lossPlayer = 0;         // HPs lost by player in attack
 var lossDefender = 0;       // HPs lost by defender in attack
 
 //      BOOLEAN
+var justLoad = true;        // Very first time load
 var firstAttack = true;     // First attack on this character
 var gameMode = false;
 
@@ -112,7 +77,7 @@ $(document).ready(function () {
             $("#charImage" + (i + 1)).attr("src", "./assets/images/" + charArray[i].imageName + ".png");
         }
 
-        if (charPlayer === "") {         // INITIAL MODE
+        if (charPlayer === "" && !justLoad) {         // INITIAL MODE
 
             // Add the fight stuff
             // $("#cards").html(" <div class=\"col-md-4\"> <div class=\"card mb-4 shadow-sm\" id=\"cardPlayer\" style=\"visibility:visible\"> <img class=\"card-img-top\" id=\"imagePlayer\" data-src=\"holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail\" alt=\"Thumbnail [100%x225]\" src=\"https://placehold.it/225x225\"> <div class=\"card-body\"> <h3>Your character</h3> <strong class=\"d-inline-block mb-2 text-success display-4\" id=\"namePlayer\" style=\"text-align:right\">Player character</strong> <div class=\"d-flex justify-content-between align-items-center\"> <small class=\"text-muted\" id=\"hpPlayer\">HP: ??</small> </div> </div> </div> </div> <div class=\"col-md-4 align-self-center\" style=\"text-align: center;\"> <div class=\"btn-group\" id=\"attack\" style=\"visibility:visible\"> <div id=\"attackInfo\"> <p>You attacked <b>NOBODY</b> for <i>no</i> damage and suffered a <i>none</i> damage.</p> <p><button type=\"button\" class=\"btn btn-lg disabled btn-info\">ATTACK!</button></p> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"card mb-4 shadow-sm\" id=\"cardDefender\" style=\"visibility:visible\"> <img class=\"card-img-top\" id=\"imageDefender\" data-src=\"holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail\" alt=\"Thumbnail [100%x225]\" src=\"https://placehold.it/225x225\"> <div class=\"card-body\"> <h3>Defender</h3> <strong class=\"d-inline-block mb-2 text-danger display-4\" id=\"nameDefender\" style=\"text-align:right\">Attacked character</strong> <div class=\"d-flex justify-content-between align-items-center\"> <small class=\"text-muted\" id=\"hpDefender\">HP: ??</small> <div class=\"btn-group\"> <button type=\"button\" class=\"btn btn-sm btn-outline-danger\" id=\"change\">Change defender</button> </div> </div> </div> </div> </div>");
@@ -151,7 +116,7 @@ $(document).ready(function () {
 
         }
 
-        if (charPlayer !== "") {         // Only if a character has been set as player
+        if (charPlayer !== "" && !justLoad) {         // Only if a character has been set as player
 
             // Populate game stat banner
             $("#statsName").html("Current selected character: <b>" + charArray[charPlayer].name + "</b>");
@@ -195,7 +160,7 @@ $(document).ready(function () {
 
         }
 
-        if (charPlayer !== "" && charDefender !== "") {     // If both player and defender have been selected
+        if (charPlayer !== "" && charDefender !== "" && !justLoad) {     // If both player and defender have been selected
 
             // Populate defender's card
 
@@ -237,7 +202,7 @@ $(document).ready(function () {
             }
         }
 
-        if (charDefender !== "") {
+        if (charDefender !== "" && !justLoad) {
 
             if (charArray[charDefender].defeated) {
 
@@ -253,6 +218,7 @@ $(document).ready(function () {
     // Player has been defeated!
     function gameEnd() {
 
+        var msg = "";
 
         if (wins == (charArray.length - 1)) {
 
@@ -262,7 +228,8 @@ $(document).ready(function () {
             // Increase matches counter
             matches++;
 
-            $("#mainMessage").html("<h1>Winner!!</h1><h2>The force is strong with you <b>" + charArray[charPlayer].name + "</b></h2><p class=\"lead\">Contratulations! You have defeated all the characters!</p>");
+            // Produce a message for the user to see
+            msg = "<h1>Winner!!</h1><h2>The force is strong with you <b>" + charArray[charPlayer].name + "</b></h2><p class=\"lead\">Contratulations! You have defeated all the characters!</p>";
 
         } else {
 
@@ -272,7 +239,8 @@ $(document).ready(function () {
             // Increase loss counter
             loss++;
 
-            $("#mainMessage").html("<h1>** GAME OVER **</h1><h2>The force was weak with you <b>" + charArray[charPlayer].name + "</b></h2><p class=\"lead\">Go... train and try again</p>");
+            // Produce a message for the user to see
+            msg = "<h1>** GAME OVER **</h1><h2>The force was weak with you <b>" + charArray[charPlayer].name + "</b></h2><p class=\"lead\">Go... train and try again</p>";
         }
 
         // Reset basic variables
@@ -296,6 +264,10 @@ $(document).ready(function () {
 
         // Disable all buttons
         $(".roundBtn").addClass("disabled");
+
+        // Display message in jumbotron
+        $("#mainMessage").html(msg);
+        $(".jumbotron").css("background-color","rgba(119, 0, 0, 0.781)");
 
         // Show message board and hide cards
         $(".jumbotron").css("display", "");
@@ -429,6 +401,22 @@ $(document).ready(function () {
 
         console.log("play again");
 
+        updateScreen();
+    });
+
+    // Hide instructions and start the game
+    $("#start").on("click", function () {
+
+        // Hide jumbotron and show cards
+        $("#cards").css("display", "");
+        $(".jumbotron").css("display", "none");
+        $(".roundBtn").css("visibility", "visible");
+
+        $("#start").css("display", "none");
+        $("#again").css("display", "");
+
+
+        justLoad = false;
         updateScreen();
     });
 

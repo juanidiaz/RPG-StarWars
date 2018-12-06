@@ -36,7 +36,7 @@
     <div class="container">
 
         <!-- ************* CHARACTER LIST ************* -->
-        <div class="row justify-content-between mt-3" style="text-align: center;">
+        <div class="row justify-content-between mt-3" id="charList" style="visibility:visible; text-align: center;">
 
             <div class="col-sm-2 0" style="visibility:visible; display:inline">
                 <img class="rounded-circle" id="charImage1" src="https://placehold.it/225x225" alt="Character image"
@@ -45,7 +45,7 @@
                     <h2>Character Name 1</h2>
                     <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton1 0"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton1 0"><a class="btn btn-secondary disabled roundBtn" style="visibility:hidden; display:inline;"
                         id="0" href="#" role="button">Button 1</a></p>
             </div>
 
@@ -56,7 +56,7 @@
                     <h2>Character Name 2</h2>
                     <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton2 1"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton2 1"><a class="btn btn-secondary disabled roundBtn" style="visibility:hidden; display:inline;"
                         id="1" href="#" role="button">Button 2</a></p>
             </div>
 
@@ -67,7 +67,7 @@
                     <h2>Character Name 3</h2>
                     <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton3 2"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton3 2"><a class="btn btn-secondary disabled roundBtn" style="visibility:hidden; display:inline;"
                         id="2" href="#" role="button">Button 3</a></p>
             </div>
 
@@ -78,7 +78,7 @@
                     <h2>Character Name 4</h2>
                     <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton4 3"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton4 3"><a class="btn btn-secondary disabled roundBtn" style="visibility:hidden; display:inline;"
                         id="3" href="#" role="button">Button 4</a></p>
             </div>
 
@@ -89,7 +89,7 @@
                     <h2>Character Name 5</h2>
                     <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton5 4"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton5 4"><a class="btn btn-secondary disabled roundBtn" style="visibility:hidden; display:inline;"
                         id="4" href="#" role="button">Button 5</a></p>
             </div>
 
@@ -100,14 +100,14 @@
                     <h2>Character Name 6</h2>
                     <p style="color:white;">HP: --</p>
                 </span>
-                <p id="charButton6 5"><a class="btn btn-secondary disabled roundBtn" style="visibility:visible; display:inline;"
+                <p id="charButton6 5"><a class="btn btn-secondary disabled roundBtn" style="visibility:hidden; display:inline;"
                         id="5" href="#" role="button">Button 6</a></p>
             </div>
 
         </div>
 
         <!-- ************* PLAYER & Defender CARDS ************* -->
-        <div class="row mt-3" id="cards">
+        <div class="row mt-3" id="cards" style="display: none">
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm" id="cardPlayer" style="visibility:visible">
                     <img class="card-img-top" id="imagePlayer" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
@@ -152,17 +152,34 @@
         </div>
 
         <!-- ******************** JUMBOTRON ******************** -->
-        <div class="jumbotron mt-3" style="display: none">
+        <div class="jumbotron mt-3">
             <div id="mainMessage">
+                <!-- 
                 <h1>Winner!!</h1>
                 <h2>The force is strong with you <b>NOBODY</b></h2>
                 <p class="lead">Contratulations! You have defeated all the characters!</p>
+                 -->
+                <h2><b>INSTRUCTIONS: </b></h2>
+                <ul>
+                    <li>The objective of the game is to defeat all characters other than the one you pick to play as.</li>
+                    <li> You WIN a game if you defeat all characters.</li>
+                    <li> You LOOSE the game if a character deafeat your character.</li>
+                    <li>Every character has a starting `health points` level (HP), an `attack power` and a `counter
+                        attack power`... the amount of the last two are not obvious. So you need to strategize.</li>
+                    <li>First select the character you want to play as</li>
+                    <li>Second select the character you want to attack.</li>
+                    <li>Click the "Attack!" button to make an attack.</li>
+                    <li>Once you atack an oponent, your `HP` will diminish by the other character's `counter attack
+                        power`. However its `HP` will diminish by your player `attack power`... this will increase
+                        every time there is an attack.</li>
+                </ul>
             </div>
-            <button type="button" class="btn btn-warning" id="again">Play again</button>
+            <button type="button" class="btn btn-warning" id="again" style="display: none">Play again</button>
+            <button type="button" class="btn btn-alert" id="start">I WANNA PLAY!</button>
         </div>
         <!-- *************************************************** -->
 
-<!-- 
+        <!-- 
         ============================================
         ===== USE THIS ONLY FOR TROUBLSHOOTING =====
         <button type="button" class="btn btn-warning" id="update">Update Screen</button>
