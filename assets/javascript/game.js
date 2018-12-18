@@ -395,6 +395,10 @@ $(document).ready(function () {
     // Click play again once match is over
     $("#again").on("click", function () {
 
+        // Reset variables
+        firstAttack = true;
+        wins = 0;
+
         // Hide jumbotron and show cards
         $("#cards").css("display", "");
         $(".jumbotron").css("display", "none");
