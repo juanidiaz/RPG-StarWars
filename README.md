@@ -28,8 +28,8 @@ manage the logic of displaying diferent characters based on the user inputs.
 
 
 # TIPS
-- If yo uwant to get some inside information you can always use the console (Google Chrome)
+- If you want to get some inside information you can always use the console (Google Chrome)
 
-# QUESTIONS OR COMMENTS
-- Feel free to contact the developer!
-
+## QUESTIONS OR COMMENTS
+- Feel free to contact the developer @ <jdi@idiaz.ca>!
+- See the project [live](https://juanidiaz.github.io/unit-4-game/).
